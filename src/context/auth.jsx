@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
+import PropTypes from 'prop-types';  // Importando o prop-types para validação
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
