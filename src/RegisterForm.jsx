@@ -1,15 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useAuth } from './context/auth'; // Importando o hook de autenticação
+import { useAuth } from './context/auth'; // Certifique-se de que está importando o hook de autenticação corretamente
 
 function RegisterForm() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn } = useAuth(); // Usando o método de login do contexto
+    const { signIn } = useAuth(); // Desestruturando signIn do useAuth
 
-    // Função para lidar com o envio do formulário
     const onSubmit = data => {
-        console.log(data);
-        // Chamar a função de login passando os dados do formulário
         signIn({ username: data.name, password: data.password })
             .then(() => {
                 alert('Login realizado com sucesso!');
@@ -25,12 +22,6 @@ function RegisterForm() {
                 <label htmlFor="name">Nome:</label>
                 <input id="name" {...register('name', { required: "Nome é obrigatório" })} />
                 {errors.name && <p>{errors.name.message}</p>}
-            </div>
-
-            <div>
-                <label htmlFor="email">E-mail:</label>
-                <input id="email" type="email" {...register('email', { required: "E-mail é obrigatório" })} />
-                {errors.email && <p>{errors.email.message}</p>}
             </div>
 
             <div>
