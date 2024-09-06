@@ -47,10 +47,10 @@ export const AuthProvider = ({ children }) => {
 const fakeApiLogin = (username, password) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (username === "user" && password === "pass") {
+      if (username === "Livia" && password === "pass") {  // Modifique o nome de usuário e a senha se desejar
         resolve({
           id: 1,
-          username: "user",
+          username: "Livia",
           token: "fake-jwt-token"
         });
       } else {
