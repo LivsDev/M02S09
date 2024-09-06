@@ -1,12 +1,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuth } from './context/auth'; // Importando o hook de autenticação
 
 function RegisterForm() {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { signIn } = useAuth(); // Usando o método de login do contexto
 
+    // Função para lidar com o envio do formulário
     const onSubmit = data => {
         console.log(data);
-        alert('Cadastro realizado com sucesso!');
+        // Chamar a função de login passando os dados do formulário
+        signIn({ username: data.name, password: data.password })
+            .then(() => {
+                alert('Login realizado com sucesso!');
+            })
+            .catch(error => {
+                alert('Erro ao fazer login: ' + error);
+            });
     };
 
     return (
